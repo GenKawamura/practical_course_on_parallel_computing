@@ -1,0 +1,94 @@
+\mode<presentation>
+
+\defbeamertemplate*{title page}{ugoe}[1][]
+{ 
+  \begin{tikzpicture}[remember picture, overlay]
+    \draw (current page.north east) ++(-0.180, -0.01) coordinate(logo ne);
+    \node at (logo ne) [anchor=north east] {
+      \includegraphics[width=5cm]{logos/logo-uni-goe.pdf}
+    };
+    \draw (current page.south) ++(0,1) node [anchor=south] { \insertlogos };
+  \end{tikzpicture}
+
+  \vskip0.6cm%
+  \begin{beamercolorbox}[sep=8pt,center,#1]{title page header}
+    \usebeamerfont{title}\inserttitle\par%
+  \end{beamercolorbox}%
+  \vskip0.6cm%
+  \begin{beamercolorbox}[center,#1]{author}
+    \usebeamerfont{author}\insertauthor%
+  \end{beamercolorbox}
+  \vskip0.2cm%
+  \begin{beamercolorbox}[center,#1]{institute}
+    \usebeamerfont{author}\insertinstitute%
+  \end{beamercolorbox}
+  \vskip0.2cm%
+  \begin{beamercolorbox}[center,#1]{date}
+    \usebeamerfont{author}\insertdate%
+  \end{beamercolorbox}
+ \vskip0.3cm%
+  \vfill
+}
+
+\defbeamertemplate*{block example begin}{ugoe}
+{
+  \ifx\insertblocktitle\empty
+  \else
+    \par\vskip\medskipamount%
+    \begin{beamercolorbox}[colsep*=.75ex]{block title example}
+      \usebeamerfont*{block title example}\insertblocktitle%
+    \end{beamercolorbox}%
+    {\parskip0pt\par}%
+    \ifbeamercolorempty[bg]{block title example}
+    {}
+  \fi
+  {\ifbeamercolorempty[bg]{block body example}{}{\nointerlineskip\vskip-0.5pt}}%
+  \begin{beamercolorbox}[colsep*=.75ex,vmode]{block body example}%
+  \usebeamerfont{block body example}%
+  }
+\defbeamertemplate*{block example end}{ugoe}  
+{\end{beamercolorbox}\vskip\smallskipamount}
+
+
+
+\defbeamertemplate*{block alerted begin}{ugoe}
+{
+  \ifx\insertblocktitle\empty
+  \else
+    \par\vskip\medskipamount%
+    \begin{beamercolorbox}[colsep*=.75ex]{block title alerted}
+      \usebeamerfont*{block title alerted}\insertblocktitle%
+    \end{beamercolorbox}%
+    {\parskip0pt\par}%
+    \ifbeamercolorempty[bg]{block title alerted}
+    {}
+  \fi
+  {\ifbeamercolorempty[bg]{block body alerted}{}{\nointerlineskip\vskip-0.5pt}}%
+  \begin{beamercolorbox}[colsep*=.75ex,vmode]{block body alerted}%
+  \usebeamerfont{block body alerted}%
+  }
+\defbeamertemplate*{block alerted end}{ugoe}  
+{\end{beamercolorbox}\vskip\smallskipamount}
+
+
+\defbeamertemplate*{block begin}{ugoe}
+{
+  \ifx\insertblocktitle\empty
+  \else
+    \par\vskip\medskipamount%
+    \begin{beamercolorbox}[colsep*=.75ex]{block title}
+      \usebeamerfont*{block title}\insertblocktitle%
+    \end{beamercolorbox}%
+    {\parskip0pt\par}%
+    \ifbeamercolorempty[bg]{block title}
+    {}
+  \fi
+  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+  \begin{beamercolorbox}[colsep*=.75ex,vmode]{block body}%
+  \usebeamerfont{block body}%
+  }
+\defbeamertemplate*{block end}{ugoe}  
+{\end{beamercolorbox}\vskip\smallskipamount}
+
+\mode
+<all>

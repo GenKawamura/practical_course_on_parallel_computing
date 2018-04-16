@@ -1,0 +1,107 @@
+\documentclass{article} \usepackage{listings}
+
+\usepackage{url} % URL is used to display a link
+
+\lstset{
+    basicstyle={\ttfamily\small},
+    frame=tRBl,
+    framesep=10pt,
+    breaklines=true,
+    linewidth=12cm,
+    lineskip=-0.5ex,
+    tabsize=2 
+}
+
+\title{Practical Course on Parallel Computing  Hands-on Exercise}
+\author{Dr. Gen Kawamura}
+
+\begin{document}
+\maketitle
+
+
+
+
+
+%-----------------------------------------
+% Hello World
+%-----------------------------------------
+\section{Posix Thread: Basis}
+Let's start Pthreads.\\ 
+\\
+The following codes can generate the first Pthreads examples in the lecture. Write and compile the codes and run the executables.
+\footnote{The codes will be available on the lecture page later - :\url{https://projects.gwdg.de/projects/practical-course-on-parallel-computing/wiki/wiki}}。\\
+
+\begin{itemize}
+\item Hello World {\it basic.c}
+\lstinputlisting[language=C++]{codes/basic.c}
+
+\item Excecusion of basic.c
+\begin{lstlisting}
+$ gcc -pthread basic.c -o basic 
+$ ./basic
+\end{lstlisting}
+
+
+\item With pthread arguments: {\it answer.c}
+\lstinputlisting[language=C++]{codes/answer.c}
+
+\item With many pthread arguments: {\it hello\_arg2.c}
+\lstinputlisting[language=C++]{codes/hello_arg2.c}
+
+\end{itemize}
+
+
+%-----------------------------------------
+% Shared Data
+%-----------------------------------------
+\section{Shared Data}
+The global C variables in the following codes are global over thread boundaries.
+
+\begin{itemize}
+
+\item Basic example for shared data: {\it basic\_glob\_var.c}
+\lstinputlisting[language=C++]{codes/basic_glob_var.c}
+
+\item A mutex example using dotprod (serial ver.): {\it dotprod\_serial.c}
+\lstinputlisting[language=C++]{codes/dotprod_serial.c}
+
+\item A Mutex example using dotprod (threadable ver.): {\it dotprod\_mutex.c}
+\lstinputlisting[language=C++]{codes/dotprod_mutex.c}
+
+\end{itemize}
+
+
+%-----------------------------------------
+% Signaling and Condition Variables
+%-----------------------------------------
+\section{Signaling and Condition Variables}
+With a condition variable it can signal another thread about an event, e.g. that they are finished doing something.
+
+\begin{itemize}
+
+\item Signaling and Condition Variables: {\it condvar.c}
+\lstinputlisting[language=C++]{codes/condvar.c}
+
+%% The barrier.c code is relying on the older C99 syntax
+%\item Example of barrier: {\it barrier.c}
+%\lstinputlisting[language=C++]{codes/barrier.c}
+
+
+\end{itemize}
+
+%-----------------------------------------
+% Signaling and Condition Variables
+%-----------------------------------------
+\section{Performance - Bug}
+
+This example code contains a bug. Please find and fix it.
+
+\begin{itemize}
+\item A buggy code: Where is the bug? {\it bug6.c}
+\lstinputlisting[language=C++]{codes/bug6.c}
+
+
+\end{itemize}
+
+
+\end{document}
