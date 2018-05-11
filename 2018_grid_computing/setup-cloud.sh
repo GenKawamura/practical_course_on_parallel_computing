@@ -22,10 +22,9 @@ install_packages(){
     ## CVMFS
     repobase="http://cvmrepo.web.cern.ch/cvmrepo/yum/cvmfs/EL/6/x86_64"
     repofile="cvmfs-release-2-4.el6.noarch.rpm"
-    HOME=/root
     
-    if ! [ -e $HOME/$repofile ]; then
-	sudo wget $repobase/$repofile -O $HOME/$repofile
+    if [ -e $HOME/$repofile ]; then
+	wget $repobase/$repofile -O $HOME/$repofile
 	sudo yum -y localinstall $HOME/$repofile
 	
 	#----------------------------------
@@ -46,8 +45,9 @@ CVMFS_QUOTA_LIMIT=3000
 CVMFS_HTTP_PROXY=\"$CVMFS_HTTP_PROXY\"
 " > $tmpfile
     sudo cp -v $tmpfile /etc/cvmfs/default.local
+    sudo chmod 644 /etc/cvmfs/default.local
 
-
+    sudo service autofs restart
 }
 
 
