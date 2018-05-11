@@ -85,8 +85,9 @@ create_accounts(){
 	echo "$pass" | sudo passwd $user --stdin
 
 	## Output
-	echo -e "User@HOST\t\tPassword" >> $output
+	echo -e "User@HOST\t\t\tPassword" >> $output
 	echo -e "$user@$CLOUD_NODE\t\t$pass" >> $output
+	echo -e "\n\n\n\n" >> $output
     done
 }
 
