@@ -51,6 +51,8 @@ CVMFS_HTTP_PROXY=\"$CVMFS_HTTP_PROXY\"
     sudo chmod 644 /etc/cvmfs/default.local
 
     sudo service autofs restart
+
+    sudo cp -v setupCVMFS.sh /etc/profile.d
 }
 
 
