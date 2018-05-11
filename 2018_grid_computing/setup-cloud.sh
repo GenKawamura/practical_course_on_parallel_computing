@@ -1,10 +1,13 @@
 #!/bin/bash
 
+CLOUD_NODE="141.5.108.31"
+
 usage="$0 [option]
 
  -I:  Install packages
  -T:  Test system
- 
+ -C:  Create accounts [from 01-20]
+ -i:  set IP [default: $CLOUD_NODE]
  
 "
 
@@ -67,15 +70,40 @@ test_system(){
 }
 
 
+create_accounts(){
+    local output=$HOME/accounts.txt
+    [ -e $output ] && rm -v $output
+
+    for i in $(seq 1 20)
+    do
+	local user=ppc$(printf "%0.2d" $i)
+	local pass=$(echo "$RANDOM" | sha1sum | awk '{print $1}' | perl -pe "s/^(..........).*/\1/g")
+
+	## Creating account
+	echo "Making account [$user]"
+	id $user || sudo adduser $user
+	echo "$pass" | sudo passwd $user --stdin
+
+	## Output
+	echo -e "User@HOST\t\tPassword" >> $output
+	echo -e "$user@$CLOUD_NODE\t\t$pass" >> $output
+    done
+}
+
+
 #--------------------------
 # Getopt
 #--------------------------
-while getopts "IThv" op
+while getopts "ITi:Chv" op
   do
   case $op in
       I) install_packages
 	  ;;
       T) test_system
+	  ;;
+      i) IP="$OPTARG"
+	  ;;
+      C) create_accounts
 	  ;;
       h) echo "$usage"
 	  exit 0
