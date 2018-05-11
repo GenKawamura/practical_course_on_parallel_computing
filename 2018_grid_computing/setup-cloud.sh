@@ -19,7 +19,7 @@ fi
 
 install_packages(){
     ## Basic packages
-    sudo yum -y install git emacs nano screen htop wget
+    sudo yum -y install git emacs nano screen htop wget gcc
 
 
     ## CVMFS
