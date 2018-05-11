@@ -23,7 +23,7 @@ install_packages(){
     repobase="http://cvmrepo.web.cern.ch/cvmrepo/yum/cvmfs/EL/6/x86_64"
     repofile="cvmfs-release-2-4.el6.noarch.rpm"
     
-    if [ -e $HOME/$repofile ]; then
+    if [ ! -e $HOME/$repofile ]; then
 	wget $repobase/$repofile -O $HOME/$repofile
 	sudo yum -y localinstall $HOME/$repofile
 	
